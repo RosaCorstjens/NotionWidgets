@@ -1,7 +1,10 @@
 
 fetch("/bookGenreChart")
     .then(response => response.json())
-    .then(genreCounts => {
+    .then(data => console.log(data))
+    .catch(error => console.log("error fetching:", error));
+
+    /*.then(genreCounts => {
         const ctx = document.getElementById('testChart').getContext('2d');
         const data = {
             labels: Object.keys(genreCounts),
@@ -17,4 +20,4 @@ fetch("/bookGenreChart")
         };
 
         new Chart(ctx, chartConfig);
-    });
+    });*/
