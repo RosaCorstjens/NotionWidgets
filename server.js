@@ -18,6 +18,18 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+const { createServer } = require("http");
+
+createServer((req, res) => {
+  if (req.url === "/bookGenreChart") {
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ message: "Hello from the server!" }));
+  } else {
+    res.writeHead(404);
+    res.end();
+  }
+}).listen(3000);
+
 app.get('/bookGenreChart', async (req, res) => {
     const response = await queryDB(dbID);
     const pages = response.results;
