@@ -1,14 +1,9 @@
 {
   "version": 2,
   "builds": [
-    { "src": "index.html", "use": "@vercel/static" },
-    { "src": "client.js", "use": "@vercel/static" }
+    { "src": "public/index.html", "use": "@vercel/static" },
+    { "src": "public/client.js", "use": "@vercel/static" }
   ],
-  "functions": {
-    "server.js": {
-      "runtime": "nodejs16.x"
-    }
-  },
   "routes": [
     { "src": "/bookGenreChart", "dest": "/server.js" }
   ]
