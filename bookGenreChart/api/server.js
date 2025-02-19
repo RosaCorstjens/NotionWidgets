@@ -2,7 +2,6 @@ import { config } from "dotenv";
 import { Client } from "@notionhq/client";
 import express from "express";
 import path from "path";
-import Chart from 'chart.js/auto';
 
 config();
 
@@ -12,23 +11,29 @@ const app = express();
 const port = 3000;
 const notion = new Client({ auth: keyID });
 
-app.use(express.static('public'));
+//app.use(express.static('public'));
+
+export default async function handler(req, res) {
+    if (req.method === "GET" && req.url === "/bookGenreChart") {
+        const response = await queryDB(dbID);
+        const pages = response.results;
+
+        const genreCounts = pages.reduce((acc, genre) => {
+            acc[genre.properties.Name.title[0].text.content] = genre.properties.Finished.formula.number;
+            return acc;
+        }, {});
+
+        res.status(200).json(genreCounts);
+      
+     // res.status(200).json({ message: "Hello from the server!" });
+    } else {
+      res.status(404).json({ error: "Not found" });
+    }
+  }
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, '../index.html'));
 });
-
-const { createServer } = require("http");
-
-createServer((req, res) => {
-  if (req.url === "/bookGenreChart") {
-    res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify({ message: "Hello from the server!" }));
-  } else {
-    res.writeHead(404);
-    res.end();
-  }
-}).listen(3000);
 
 app.get('/bookGenreChart', async (req, res) => {
     const response = await queryDB(dbID);

@@ -1,11 +1,8 @@
 
 fetch("/bookGenreChart")
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.log("error fetching:", error));
-
-    /*.then(genreCounts => {
-        const ctx = document.getElementById('testChart').getContext('2d');
+    .then(response => response.json())                                              // catch json response from bookGenreChart 
+    .then(genreCounts => {
+        const ctx = document.getElementById('chart').getContext('2d');          // grap ref to chart in html
         const data = {
             labels: Object.keys(genreCounts),
             datasets: [{
@@ -20,4 +17,4 @@ fetch("/bookGenreChart")
         };
 
         new Chart(ctx, chartConfig);
-    });*/
+    });

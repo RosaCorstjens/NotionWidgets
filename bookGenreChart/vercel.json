@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "routes": [
+    { "src": "/bookGenreChart", "dest": "/api/server.js" },
+    { "src": "/bookGenreChart/(.*)", "dest": "/src/$1" }
+  ]
+}

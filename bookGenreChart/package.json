@@ -1,0 +1,25 @@
+{
+  "name": "notion_widgets",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "deploy:bookGenreChart": "vercel ./bookGenreChart --prod",    
+    "start:bookGenreChart": "nodemon server.js",
+    "deploy:all": "vercel --prod",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Rosa Corstjens",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@notionhq/client": "^2.2.16",
+    "chart.js": "^4.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  }, 
+  "engines": {
+    "node": "22.x"
+  }
+}
